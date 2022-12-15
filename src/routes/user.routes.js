@@ -1,10 +1,9 @@
 const express = require('express');
-const Authmiddleware = require('../middlewares/Auth.middleware');
 const {User} = require('../models/index.js');
 const UserRouter = express.Router();
 
 UserRouter.get('/',(req,res)=>{
-    res.send("Wellcome");
+    res.send("Wellcome Hai Ji");
 })
 UserRouter.post('/register',async(req,res)=>{
     const {email,name,password} = req.body;
@@ -35,7 +34,7 @@ UserRouter.post('/login',async(req,res)=>{
         res.status(500).send(er.message)
     }
 })
-UserRouter.get('/getProfile',Authmiddleware,async(req,res)=>{
+UserRouter.get('/getProfile',async(req,res)=>{
     let token = req.headers.token;
     let [id, email, password] = token.split(":");
     try {
