@@ -4,7 +4,7 @@ const ListSchema = new mongoose.Schema({
     title:{type:String},
     quantity:{type:Number},
     priority:{type:String},
-    descriptiom:{type:String}
+    description:{type:String}
 },
 { 
     timestamps: {
