@@ -28,7 +28,7 @@ ShoppingRouter.get("/getItem" , async(req,res)=>{
 
 
 
-ShoppingRouter.delete("/delItem" , async(req,res)=>{
+ShoppingRouter.delete("/:id" , async(req,res)=>{
     const {id} = req.params
     try {
         await List.findByIdAndDelete(id);
