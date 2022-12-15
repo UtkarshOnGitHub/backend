@@ -10,10 +10,21 @@ ShoppingRouter.get("/",(req,res)=>{
     res.send("Welocme To Shopify")
 })
 
+var currentTime = new Date()
+var hours = currentTime.getHours()
+var minutes = currentTime.getMinutes()
+var seconds = currentTime.getSeconds()
+if (minutes < 10)
+    minutes = "0" + minutes
+if(seconds < 10){
+    seconds = "0" + seconds
+}
+let time = `${hours}:${minutes}:${seconds}`
+console.log(time)
 ShoppingRouter.post("/addItem" , async (req,res)=>{
     const {title,quantity,priority,description} = req.body;
     try {
-        const item = new List({title,quantity,priority,description});
+        const item = new List({title,quantity,priority,description,time});
         await item.save() 
         res.send("Item Added Succsessfully")
     } catch (error) {
@@ -47,7 +58,6 @@ ShoppingRouter.get("/bookmark" , async(req,res)=>{
 
 ShoppingRouter.post("/addbookmark/:id" , async(req,res)=>{
         const {id} = req.params
-        console.log(id)
         try {
             const data  = await List.findById(id)
             console.log(data)
